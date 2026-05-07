@@ -1,0 +1,634 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="description" content="PRIME is a physics-based estimation framework for reconstructing dynamically consistent motion, inertial parameters, and contact for legged and humanoid robots.">
+  <meta name="keywords" content="PRIME, robot motion estimation, humanoid robots, legged robots, contact dynamics, inertial parameter identification">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta property="og:title" content="PRIME | Physically-consistent Robotic Inertial and Motion Estimation">
+  <meta property="og:description" content="Physically consistent motion estimation for legged and humanoid robots with differentiable contact dynamics and inertial parameter identification.">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="./static/images/First.svg">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="PRIME | Physically-consistent Robotic Inertial and Motion Estimation">
+  <meta name="twitter:description" content="Physically consistent motion estimation for legged and humanoid robots with differentiable contact dynamics and inertial parameter identification.">
+  <meta name="twitter:image" content="./static/images/First.svg">
+  <title>PRIME | Physically-consistent Robotic Inertial and Motion Estimation</title>
+
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro"
+        rel="stylesheet">
+  <link rel="stylesheet" href="./static/css/bulma.min.css">
+  <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="./static/css/index.css">
+  <link rel="icon" href="./static/images/favicon.svg">
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [['\\(', '\\)'], ['$', '$']]
+      },
+      svg: {
+        fontCache: 'global'
+      }
+    };
+  </script>
+  <script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+</head>
+<body>
+
+<section class="hero project-hero">
+  <div class="hero-body">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered">
+        <div class="column has-text-centered">
+          <h1 class="title is-1 publication-title">
+            <span class="acronym-mark">P</span>hysically-consistent
+            <span class="acronym-mark">R</span>obotic
+            <span class="acronym-mark">I</span>nertial and
+            <span class="acronym-mark">M</span>otion
+            <span class="acronym-mark">E</span>stimation
+            <span class="title-tail">for Legged and Humanoid Robots</span>
+          </h1>
+          <!-- <p class="hero-summary">
+            Physically-consistent Robotic Inertial and Motion Estimation for legged and humanoid
+            robots, combining differentiable contact dynamics with joint state and inertial
+            parameter refinement.
+          </p> -->
+
+          <div class="is-size-5 publication-authors">
+            <span class="author-block">Jiarong Kang<sup>1</sup>,</span>
+            <span class="author-block">Kunzhao Ren<sup>1</sup>,</span>
+            <span class="author-block">Tao Pang,</span>
+            <span class="author-block">and Xiaobin Xiong<sup>1,2</sup></span>
+          </div>
+
+          <div class="is-size-5 publication-authors">
+            <span class="author-block"><sup>1</sup>University of Wisconsin--Madison, WI, USA</span>
+            <!-- <span class="author-block"><sup>2</sup>Robotics and AI Institute, MA, USA</span> -->
+            <span class="author-block"><sup>2</sup>Shanghai Innovation Institute, Shanghai, China</span>
+          </div>
+          <p class="eyebrow venue-label"></p>
+
+          <p class="eyebrow venue-label">Robotics: Science and Systems (RSS) 2026</p>
+
+          <div class="publication-links">
+            <span class="link-block">
+              <a href="https://arxiv.org/abs/0000.00000"
+                 class="external-link button is-normal is-rounded action-button">
+                <span class="icon">
+                  <i class="ai ai-arxiv"></i>
+                </span>
+                <span>Paper</span>
+              </a>
+            </span>
+            <span class="link-block">
+              <a href="https://www.youtube.com/"
+                 class="external-link button is-normal is-rounded action-button">
+                <span class="icon inline-icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" focusable="false">
+                    <path d="M8 6.75v10.5L17 12 8 6.75Z" fill="currentColor"></path>
+                  </svg>
+                </span>
+                <span>Video</span>
+              </a>
+            </span>
+            <span class="link-block">
+              <a href="https://github.com/"
+                 class="external-link button is-normal is-rounded action-button">
+                <span class="icon inline-icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" focusable="false">
+                    <path d="M12 2.5a9.5 9.5 0 0 0-3 18.5c.5.1.7-.2.7-.5v-1.8c-2.9.6-3.5-1.2-3.5-1.2-.5-1.1-1.1-1.4-1.1-1.4-.9-.6.1-.6.1-.6 1 .1 1.6 1 1.6 1 .9 1.5 2.4 1.1 3 .8.1-.7.3-1.1.6-1.4-2.3-.3-4.8-1.1-4.8-5.1 0-1.1.4-2 .9-2.7-.1-.2-.4-1.2.1-2.6 0 0 .8-.2 2.8 1a9.7 9.7 0 0 1 5.1 0c2-1.3 2.8-1 2.8-1 .5 1.4.2 2.4.1 2.6.6.7.9 1.6.9 2.7 0 4-2.5 4.8-4.8 5.1.4.3.7 1 .7 2v3c0 .3.2.6.7.5A9.5 9.5 0 0 0 12 2.5Z" fill="currentColor"></path>
+                  </svg>
+                </span>
+                <span>Code (coming soon)</span>
+              </a>
+            </span>
+            <span class="link-block">
+              <a href="https://www.youtube.com/embed/5pG6b9hvz-Y?autoplay=1&mute=1&loop=1&playlist=5pG6b9hvz-Y&playsinline=1&rel=0/"
+                 class="external-link button is-normal is-rounded action-button">
+                <span class="icon inline-icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" focusable="false">
+                    <path d="M3.5 7.5A2.5 2.5 0 0 1 6 5h4l1.5 2H18A2.5 2.5 0 0 1 20.5 9.5v7A2.5 2.5 0 0 1 18 19H6a2.5 2.5 0 0 1-2.5-2.5z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"></path>
+                    <path d="M3.8 9h16.4" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"></path>
+                    <path d="M12 10.8v6.4" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"></path>
+                    <path d="M10.6 12.1h2.8l-2.8 3h2.8" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"></path>
+                  </svg>
+                </span>
+                <span>Supplementary</span>
+              </a>
+            </span>
+          </div>
+
+          <!-- <p class="edit-note">
+            This page is pre-filled from the LaTeX source in <code>overleaf/</code>, including the
+            current title, author list, abstract, and figures used in the paper.
+          </p> -->
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section teaser-section">
+  <div class="container is-max-desktop">
+    <div class="hero-body">
+      <div class="publication-video">
+        <iframe
+          src="https://www.youtube.com/embed/5pG6b9hvz-Y?autoplay=1&mute=1&loop=1&playlist=5pG6b9hvz-Y&playsinline=1&rel=0"
+          title="PRIME project overview video"
+          frameborder="0"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          referrerpolicy="strict-origin-when-cross-origin"
+          allowfullscreen></iframe>
+      </div>
+      <!-- <h2 class="subtitle has-text-centered teaser-copy">
+        Use this top section for the main project overview video so visitors can immediately see
+        the key robot behaviors and reconstruction results.
+      </h2> -->
+    </div>
+  </div>
+</section>
+
+<section class="section section-surface">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Abstract</h2>
+        <div class="content has-text-justified body-copy">
+          <p>
+            Humanoid and legged robots interact with the environment through intermittent contacts, 
+            making accurate motion estimation fundamentally dependent on reasoning about contact dynamics. 
+            However, standard sensing pipelines—whether based on onboard proprioception with Extended Kalman 
+            Filters (EKFs) or external motion capture systems—recover only kinematics, while contact forces, 
+            contact timing, and inertial parameters remain unobserved. As a result, purely kinematic reconstructions 
+            often violate rigid-body dynamics, particularly during contact-rich motions. 
+          </p>
+          <p>
+            To enable accurate motion estimation from onboard kinematics in real-world deployment, 
+            we propose PRIME (Physically-consistent Robotic Inertial and Motion Estimation), a 
+            Maximum A Posteriori formulation that refines measured kinematics and actuator commands 
+            into a dynamically consistent trajectory while jointly estimating frictional contact 
+            forces and physically consistent inertial parameters. Our approach incorporates 
+            differentiable contact dynamics with smoothed complementarity constraints and an 
+            Anitescu-style friction model, yielding a smooth optimization problem that remains 
+            stable across contact transitions.
+          </p>
+          <p>
+            We evaluate PRIME on contact-rich locomotion with quadrupedal robots and the Unitree G1 humanoid, 
+            demonstrating improved trajectory consistency and accurate inertial parameter identification. 
+            Beyond improving model-based estimation and control with calibrated inertial parameters, PRIME 
+            produces force- and contact-annotated motion reconstructions from real robots in deployment, 
+            which can be used to provide high-quality data for downstream learning applications, including 
+            large-scale behavior modeling and robot foundation models.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div class="columns is-centered">
+      <div class="column is-full-width">
+        <div class="feature-panel">
+          <div class="columns is-vcentered is-variable is-6">
+            <div class="column is-6">
+              <img src="./static/images/First.svg"
+                   alt="PRIME overview figure."
+                   class="rounded-media">
+            </div>
+            <div class="column is-6">
+              <h2 class="title is-3">Framework Overview</h2>
+              <p class="body-copy framework-copy">
+                PRIME uses differentiable contact dynamics within a Maximum A Posteriori 
+                framework to jointly estimate physics-consistent motion trajectories, inertial parameters, and contact from real robot data.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- <section class="section">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered">
+      <div class="column is-full-width">
+        <h2 class="title is-3 has-text-centered">Project Video</h2>
+        <p class="has-text-centered body-copy video-note">
+          I did not find a ready-to-embed demo video in the current project assets, so this section
+          remains a placeholder for your future talk, robot demo, or supplementary clip.
+        </p>
+        <div class="video-placeholder">
+          <div>
+            <p class="video-placeholder-label">Video Placeholder</p>
+            <p class="video-placeholder-title">Add your PRIME demo video or presentation recording here.</p>
+            <p class="body-copy">
+              Typical options: a YouTube embed, a Vimeo embed, or a local MP4 under
+              <code>static/videos/</code> once you export the media.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section> -->
+
+<section class="section section-surface">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered">
+      <div class="column is-full-width">
+        <h2 class="title has-text-centered section-statement">PRIME reconstructs long-horizon kinematics measurements into <span class="accent-text">dynamically consistent</span> motion with <span class="accent-text">contact annotations</span>.</h2>
+        <p class="body-copy gallery-note">
+          Across quadruped and humanoid experiments, PRIME converts long-horizon (10s) raw kinematics and actuator sensing into 
+          reconstructions that remain consistent with real-world data, rigid-body dynamics, and contact.
+        </p>
+      </div>
+    </div>
+
+    <div class="result-row">
+      <figure class="plain-result-figure">
+        <h3 class="title is-5 has-text-centered">Go2 Hardware</h3>
+        <img src="./static/images/Go2_compare.png"
+             alt="Go2 motion estimation and inertia identification results."
+             class="plain-result-image">
+        <figcaption>
+          <p class="body-copy">
+            Quadrupedal Go2 results show PRIME reconstructing dynamically consistent motion and
+            contact during diverse locomotion with a 4.6 kg payload attached beneath the torso.
+          </p>
+        </figcaption>
+      </figure>
+      <article class="figure-panel">
+        <video class="plain-inline-video" controls autoplay muted loop playsinline preload="auto" width="100%">
+          <source src="./static/videos/PRIME_1_cropped.mp4" type="video/mp4">
+        </video>
+        <!-- <h3 class="title is-5">Figure 3 Video</h3>
+        <p class="body-copy">
+          Supplementary video for the Go2 experiments corresponding to Fig. 3.
+        </p> -->
+      </article>
+    </div>
+
+    <div class="result-row">
+      <figure class="plain-result-figure">
+        <h3 class="title is-5 has-text-centered">G1 Hardware</h3>
+        <img src="./static/images/G1_real.png"
+             alt="Unitree G1 humanoid reconstruction results."
+             class="plain-result-image">
+        <figcaption>
+          <p class="body-copy">
+            Real and simulated G1 experiments illustrate PRIME correcting contact-inconsistent
+            kinematics and recovering physically consistent whole-body motion.
+          </p>
+        </figcaption>
+      </figure>
+      <article class="figure-panel">
+        <video class="plain-inline-video" controls autoplay muted loop playsinline preload="auto" width="100%">
+          <source src="./static/videos/PRIME_2_cropped_trimmed.mp4" type="video/mp4">
+        </video>
+        <!-- <h3 class="title is-5">Figure 4 Video</h3>
+        <p class="body-copy">
+          Supplementary video for the G1 reconstruction corresponding to Fig. 4.
+        </p> -->
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="section simulation-strip-section">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered">
+      <div class="column is-full-width">
+        <!-- <h3 class="title is-4 has-text-centered">Simulation Videos</h3> -->
+        <div class="simulation-strip" aria-label="Simulation video gallery">
+          <article class="simulation-card">
+            <h3 class="title is-4 simulation-card-title">Go2 Simulation</h3>
+            <video class="plain-inline-video simulation-video" controls autoplay muted loop playsinline preload="auto" width="100%">
+              <source src="./static/videos/PRIME_4_cropped_trimmed.mp4" type="video/mp4">
+            </video>
+          </article>
+          <article class="simulation-card">
+            <h3 class="title is-4 simulation-card-title">G1 Simulation</h3>
+            <video class="plain-inline-video simulation-video" controls autoplay muted loop playsinline preload="auto" width="100%">
+              <source src="./static/videos/PRIME_5_cropped_trimmed.mp4" type="video/mp4">
+            </video>
+          </article>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered">
+      <div class="column is-full-width">
+        <h2 class="title has-text-centered section-statement">PRIME performs <span class="accent-text">accurate inertia parameter identification</span> during reconstruction, with consistent numerical evaluation across robots.</h2>
+        <!-- <p class="has-text-centered body-copy gallery-note">
+          These tables summarize the inertial parameter identification results reported in the paper
+          for the quadruped and humanoid experiments.
+        </p> -->
+      </div>
+    </div>
+
+    <div class="columns is-variable is-4 table-columns">
+      <div class="column is-7">
+        <div class="table-card">
+          <h3 class="title is-5">Quadruped Go2 Torso Identification</h3>
+          <!-- <p class="body-copy table-note">
+            From <code>overleaf/sections/results.tex</code>: torso inertia and COM identification
+            under simulated and real-world payload changes.
+          </p> -->
+          <div class="table-scroll">
+            <table class="project-table compact-header-table">
+              <thead>
+                <tr>
+                  <th>\(\mathrm{Parameter}\)</th>
+                  <th>\(\mathrm{Original}\)<br>\(\mathrm{Values}\)</th>
+                  <th>\(\mathrm{Simulation}\)<br><span class="header-nowrap">\(m\ (+3\,\mathrm{kg})\)</span></th>
+                  <th>\(\mathrm{Simulation}\)<br><span class="header-nowrap">\(c_z\ (-0.1\,\mathrm{m})\)</span></th>
+                  <th>\(\mathrm{Real\mbox{-}world}\)<br><span class="header-nowrap">\(m\ (+4.6\,\mathrm{kg})\)</span></th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>\(m\ [\mathrm{kg}]\)</td>
+                  <td>\(6.927\)</td>
+                  <td><strong>\(9.975\)</strong></td>
+                  <td>\(6.865\)</td>
+                  <td><strong>\(11.740\)</strong></td>
+                </tr>
+                <tr>
+                  <td>\(c_x\ [\mathrm{m}]\)</td>
+                  <td>\(0.022\)</td>
+                  <td>\(0.034\)</td>
+                  <td>\(0.242\)</td>
+                  <td>\(0.037\)</td>
+                </tr>
+                <tr>
+                  <td>\(c_y\ [\mathrm{m}]\)</td>
+                  <td>\(0.000\)</td>
+                  <td>\(0.138\)</td>
+                  <td>\(0.089\)</td>
+                  <td>\(0.004\)</td>
+                </tr>
+                <tr>
+                  <td>\(c_z\ [\mathrm{m}]\)</td>
+                  <td>\(-0.005\)</td>
+                  <td>\(-0.012\)</td>
+                  <td><strong>\(-0.105\)</strong></td>
+                  <td><strong>\(-0.013\)</strong></td>
+                </tr>
+                <tr>
+                  <td>\(I_{xx}\)</td>
+                  <td>\(0.025\)</td>
+                  <td>\(0.033\)</td>
+                  <td>\(0.024\)</td>
+                  <td>\(0.014\)</td>
+                </tr>
+                <tr>
+                  <td>\(I_{yy}\)</td>
+                  <td>\(0.098\)</td>
+                  <td>\(0.138\)</td>
+                  <td>\(0.089\)</td>
+                  <td>\(0.274\)</td>
+                </tr>
+                <tr>
+                  <td>\(I_{zz}\)</td>
+                  <td>\(0.108\)</td>
+                  <td>\(0.150\)</td>
+                  <td>\(0.097\)</td>
+                  <td>\(0.274\)</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <div class="column is-5">
+        <div class="table-card">
+          <h3 class="title is-5">Humanoid G1 Torso Identification</h3>
+          <!-- <p class="body-copy table-note">
+            From <code>overleaf/sections/appendix.tex</code>: comparison between nominal torso
+            parameters and the identified real-world values.
+          </p> -->
+          <div class="table-scroll">
+            <table class="project-table g1-table">
+              <colgroup>
+                <col style="width: 26%;">
+                <col style="width: 24%;">
+                <col style="width: 50%;">
+              </colgroup>
+              <thead>
+                <tr>
+                  <th>\(\mathrm{Parameter}\)</th>
+                  <th>
+                    <span class="stacked-header">
+                      <span>\(\mathrm{Original}\)</span>
+                      <span>\(\mathrm{Values}\)</span>
+                    </span>
+                  </th>
+                  <th>
+                    <span class="stacked-header">
+                      <span>\(\mathrm{Real\mbox{-}world}\)</span>
+                      <span class="header-nowrap">\(\mathit{Total\ weight}\ (+2.91\,\mathrm{kg})\)</span>
+                    </span>
+                  </th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>\(m\ [\mathrm{kg}]\)</td>
+                  <td>\(9.60\)</td>
+                  <td><strong>\(13.02\)</strong></td>
+                </tr>
+                <tr>
+                  <td>\(c_x\ [\mathrm{m}]\)</td>
+                  <td>\(0.00332\)</td>
+                  <td>\(0.03186\)</td>
+                </tr>
+                <tr>
+                  <td>\(c_y\ [\mathrm{m}]\)</td>
+                  <td>\(0.0003\)</td>
+                  <td>\(-0.0165\)</td>
+                </tr>
+                <tr>
+                  <td>\(c_z\ [\mathrm{m}]\)</td>
+                  <td>\(0.1798\)</td>
+                  <td><strong>\(0.1775\)</strong></td>
+                </tr>
+                <tr>
+                  <td>\(I_{xx}\)</td>
+                  <td>\(0.1241\)</td>
+                  <td>\(0.2669\)</td>
+                </tr>
+                <tr>
+                  <td>\(I_{yy}\)</td>
+                  <td>\(0.1121\)</td>
+                  <td>\(0.3075\)</td>
+                </tr>
+                <tr>
+                  <td>\(I_{zz}\)</td>
+                  <td>\(0.0327\)</td>
+                  <td>\(0.1097\)</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section section-surface">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered">
+      <div class="column is-full-width">
+        <h2 class="title has-text-centered section-statement">
+          With accurate motion reconstruction and identification, PRIME achieves <span class="accent-text">accurate force estimation</span> against real-world force-plate measurements.
+        </h2>
+      </div>
+    </div>
+
+    <div class="columns is-centered force-video-row">
+      <div class="column is-10">
+        <article class="figure-panel">
+          <h3 class="title is-4 has-text-centered simulation-card-title">G1 Hardware with Force Plate Comparison</h3>
+          <video class="plain-inline-video force-comparison-video" controls autoplay muted loop playsinline preload="auto" width="100%">
+            <source src="./static/videos/PRIME_3_cropped_trimmed.mp4" type="video/mp4">
+          </video>
+        </article>
+      </div>
+    </div>
+
+    <div class="columns is-variable is-5 figure-pair-row">
+      <div class="column is-7">
+        <article class="figure-panel">
+          <img src="./static/images/force_compare.svg"
+               alt="Force comparison results for G1 with identification."
+               class="rounded-media">
+        </article>
+      </div>
+      <div class="column is-5">
+        <div class="rmse-panel">
+          <h3 class="title is-5">RMSEs and Cost on G1 Hardware</h3>
+          <div class="table-scroll">
+            <table class="project-table rmse-project-table">
+              <thead>
+                <tr>
+                  <th>\(\mathrm{Estimation}\)<br>\(\mathrm{Metric}\)</th>
+                  <th>\(\mathbf{With\ ID}\)</th>
+                  <th>\(\mathrm{W/O\ ID}\)</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>\(\mathrm{RMSE}_F\ [\mathrm{N}]\)</td>
+                  <td><strong>\(24.486\)</strong></td>
+                  <td>\(26.141\)</td>
+                </tr>
+                <tr>
+                  <td>\(\mathrm{Cost}\ [\times 10^3]\)</td>
+                  <td><strong>\(1.016\)</strong></td>
+                  <td>\(1.880\)</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="columns is-centered figure-8-intro">
+      <div class="column is-full-width">
+        <!-- <h3 class="title is-5 has-text-centered">Figure 8</h3> -->
+        <p class="body-copy section-lead">
+          Analytic smoothing improves optimization convergence while accommodating noise and uncertainty, which in turn supports more reliable identification and F/T-sensorless force estimation.
+        </p>
+      </div>
+    </div>
+
+    <div class="columns is-variable is-5 figure-9-row">
+      <div class="column is-6">
+        <article class="figure-panel">
+          <img src="./static/images/kappa_mass_cost.svg"
+               alt="Effect of smoothing parameter on identified mass and optimization cost."
+               class="rounded-media">
+        </article>
+      </div>
+      <div class="column is-6">
+        <article class="figure-panel">
+          <img src="./static/images/kappa_force_cost.svg"
+               alt="Effect of smoothing parameter on force RMSE and optimization cost."
+               class="rounded-media">
+          <!-- <h3 class="title is-5">Figure 9</h3> -->
+          <!-- <p class="body-copy">
+            The smoothing parameter study shows how analytic smoothing helps balance optimization
+            convergence and force-estimation accuracy.
+          </p> -->
+        </article>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+<section class="section" id="BibTeX">
+  <div class="container is-max-desktop content">
+    <h2 class="title">BibTeX</h2>
+    <pre><code>@article{prime2026,
+  title        = {PRIME: Physically-consistent Robotic Inertial and Motion Estimation for Legged and Humanoid Robots},
+  author       = {Kang, Jiarong and Ren, Kunzhao and Pang, Tao and Xiong, Xiaobin},
+  journal      = {Preprint},
+  year         = {2026}
+}</code></pre>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="container">
+    <!-- <div class="content has-text-centered footer-links">
+      <a class="icon-link" href="./PRIME.pdf" aria-label="Paper PDF">
+        <span class="inline-icon footer-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" focusable="false">
+            <path d="M6 2h8l4 4v16H6z" fill="currentColor" opacity="0.22"></path>
+            <path d="M14 2v4h4" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"></path>
+            <path d="M6 2h8l4 4v16H6z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"></path>
+            <path d="M8.2 16.5h1.8a1.7 1.7 0 0 0 0-3.4H8.2zm0 0v3.1m5.2-6.5v6.5h1.2c1.6 0 2.7-1.1 2.7-3.2 0-2.2-1.1-3.3-2.8-3.3zm0 3.1h2.6" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"></path>
+          </svg>
+        </span>
+      </a>
+      <a class="icon-link" href="./overleaf/main.tex" aria-label="LaTeX source">
+        <span class="inline-icon footer-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" focusable="false">
+            <path d="M6 2h8l4 4v16H6z" fill="currentColor" opacity="0.16"></path>
+            <path d="M14 2v4h4" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"></path>
+            <path d="M6 2h8l4 4v16H6z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"></path>
+            <path d="M9 9.5h6M9 12.5h6M9 15.5h4.5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"></path>
+          </svg>
+        </span>
+      </a>
+    </div> -->
+    <div class="columns is-centered">
+      <div class="column is-8">
+        <div class="content footer-copy">
+          <p>
+            This website is licensed under a
+            <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">
+              Creative Commons Attribution-ShareAlike 4.0 International License
+            </a>.
+          </p>
+          <p>
+            The layout is adapted from the
+            <a href="https://github.com/nerfies/nerfies.github.io">Nerfies project page template</a>.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
