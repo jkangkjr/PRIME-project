@@ -1,25 +1,9 @@
-# Personal Project Page Starter
+# Project page of PRIME: Physically-consistent Robotic Inertial and Motion Estimation for Legged and Humanoid Robots
 
-This repository is a simplified static site for a single research or project webpage.
+## Abstract
 
-## Where to edit
+Humanoid and legged robots interact with the environment through intermittent contacts, making accurate motion estimation fundamentally dependent on reasoning about contact dynamics. However, standard sensing pipelines, whether based on onboard proprioception with Extended Kalman Filters (EKFs) or external motion capture systems, recover only kinematics, while contact forces, contact timing, and inertial parameters remain unobserved. As a result, purely kinematic reconstructions often violate rigid-body dynamics, particularly during contact-rich motions.
 
-- `index.html`
-  Change the project title, authors, affiliations, links, abstract, section copy, embedded video URL, and BibTeX entry.
-- `static/css/index.css`
-  Adjust colors, spacing, card styles, and typography.
-- `static/images/`
-  Store all website figures and image assets here.
-- `static/videos/`
-  Store all website MP4 assets here.
+To enable accurate motion estimation from onboard kinematics in real-world deployment, we propose PRIME (Physically-consistent Robotic Inertial and Motion Estimation), a Maximum A Posteriori formulation that refines measured kinematics and actuator commands into a dynamically consistent trajectory while jointly estimating frictional contact forces and physically consistent inertial parameters. Our approach incorporates differentiable contact dynamics with smoothed complementarity constraints and an Anitescu-style friction model, yielding a smooth optimization problem that remains stable across contact transitions.
 
-## Suggested workflow
-
-1. Replace the text placeholders in `index.html`.
-2. Put all published figures in `static/images/` and all published videos in `static/videos/`.
-3. Update the button links and embedded video URLs in `index.html`.
-4. Preview locally with a static file server or publish directly to GitHub Pages.
-
-## Attribution
-
-The layout is adapted from the [Nerfies project page template](https://github.com/nerfies/nerfies.github.io), which is licensed under CC BY-SA 4.0.
+We evaluate PRIME on contact-rich locomotion with quadrupedal robots and the Unitree G1 humanoid, demonstrating improved trajectory consistency and accurate inertial parameter identification. Beyond improving model-based estimation and control with calibrated inertial parameters, PRIME produces force- and contact-annotated motion reconstructions from real robots in deployment, which can be used to provide high-quality data for downstream learning applications, including large-scale behavior modeling and robot foundation models.
